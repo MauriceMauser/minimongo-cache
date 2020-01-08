@@ -179,7 +179,7 @@ EJSON._adjustTypesFromJSONValue = function (obj) {
 var fromJSONValueHelper = function (value) {
   if (typeof value === 'object' && value !== null) {
     if (_.size(value) <= 2
-        && _.all(value, function (v, k) {
+        && _.every(value, function (v, k) {
           return typeof k === 'string' && k.substr(0, 1) === '$';
         })) {
       for (var i = 0; i < builtinConverters.length; i++) {
@@ -258,7 +258,7 @@ EJSON.equals = function (a, b, options) {
         bKeys.push(x);
     });
     i = 0;
-    ret = _.all(a, function (val, x) {
+    ret = _.every(a, function (val, x) {
       if (i >= bKeys.length) {
         return false;
       }
@@ -274,7 +274,7 @@ EJSON.equals = function (a, b, options) {
     return ret && i === bKeys.length;
   } else {
     i = 0;
-    ret = _.all(a, function (val, key) {
+    ret = _.every(a, function (val, key) {
       if (!_.has(b, key)) {
         return false;
       }
